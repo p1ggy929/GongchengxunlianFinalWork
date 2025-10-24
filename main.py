@@ -1,18 +1,14 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-¹¬¾±Ï¸°ûÑ§AI¸¨ÖúÕï¶ÏÏµÍ³ - Ö÷Èë¿ÚÎÄ¼ş
-"""
-
 import os
 import json
 import logging
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import requests
 import cv2
 import numpy as np
+from werkzeug.utils import secure_filename
+import base64
 
-# ÅäÖÃÈÕÖ¾
+# è®¾ç½®æ—¥å¿—
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -23,59 +19,66 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ´´½¨FlaskÓ¦ÓÃ
-app = Flask(__name__)
+# åˆ›å»ºFlaskåº”ç”¨
+app = Flask(__name__, static_folder='templates', template_folder='templates')
 
-# ¼ÓÔØÅäÖÃÎÄ¼ş
+# é…ç½®ä¸Šä¼ æ–‡ä»¶å¤¹
+UPLOAD_FOLDER = './uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
+
+# å…è®¸çš„å›¾åƒæ‰©å±•å
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'tiff'}
+
+# ???????????
 def load_config():
     try:
         with open('config.json', 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        logger.warning("ÅäÖÃÎÄ¼şÎ´ÕÒµ½£¬Ê¹ÓÃÄ¬ÈÏÅäÖÃ")
+        logger.warning("é…ç½®æ–‡ä»¶æœªæ‰¾åˆ°ï¼Œä½¿ç”¨é»˜è®¤é…ç½®")
         return {
-            "modelarts_api_url": "",  # ĞèÒªÔÚÅäÖÃÎÄ¼şÖĞÉèÖÃ
-            "modelarts_api_key": "",  # ĞèÒªÔÚÅäÖÃÎÄ¼şÖĞÉèÖÃ
+            "modelarts_api_url": "https://example.com/modelarts/api/v1/inference",  # ModelArtsæ¨ç†APIåœ°å€
+            "modelarts_api_key": "your_api_key_here",  # ModelArts APIå¯†é’¥
             "upload_folder": "uploads",
-            "allowed_extensions": {"png", "jpg", "jpeg", "tiff"}
+            "allowed_extensions": ALLOWED_EXTENSIONS
         }
 
 config = load_config()
 
-# È·±£ÉÏ´«ÎÄ¼ş¼Ğ´æÔÚ
-if not os.path.exists(config["upload_folder"]):
-    os.makedirs(config["upload_folder"])
-
-# ¼ì²éÎÄ¼şÀ©Õ¹Ãû
+# ??????????
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in config["allowed_extensions"]
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Í¼ÏñÔ¤´¦Àíº¯Êı
+# ??????????
 def preprocess_image(image_path):
     try:
-        # ¶ÁÈ¡Í¼Ïñ
+        # ??????
         image = cv2.imread(image_path)
         if image is None:
-            raise ValueError(f"ÎŞ·¨¶ÁÈ¡Í¼Ïñ: {image_path}")
+            raise ValueError(f"?????????: {image_path}")
         
-        # ×ª»»ÎªRGB¸ñÊ½
+        # ????RGB???
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
-        # µ÷Õû´óĞ¡ÎªÄ£ĞÍÊäÈë³ß´ç£¨Ê¾Àı£º512x512£©
+        # ??????Ğ¡?????????ç£¨?????512x512??
         image = cv2.resize(image, (512, 512))
         
-        # ¹éÒ»»¯
+        # ?????
         image = image / 255.0
         
-        # ×ª»»ÎªÄ£ĞÍÊäÈë¸ñÊ½
+        # ?????????????
         image = np.expand_dims(image, axis=0)
         
         return image.tolist()
     except Exception as e:
-        logger.error(f"Í¼ÏñÔ¤´¦ÀíÊ§°Ü: {str(e)}")
+        logger.error(f"???????????: {str(e)}")
         raise
 
-# µ÷ÓÃModelArtsÍÆÀíAPI
+# ????ModelArts????API
 def call_modelarts_inference(image_data):
     try:
         headers = {
@@ -97,32 +100,44 @@ def call_modelarts_inference(image_data):
         if response.status_code == 200:
             return response.json()
         else:
-            logger.error(f"ModelArts APIµ÷ÓÃÊ§°Ü: {response.status_code} - {response.text}")
-            raise Exception(f"APIµ÷ÓÃÊ§°Ü: {response.status_code}")
+            logger.error(f"ModelArts API???????: {response.status_code} - {response.text}")
+            raise Exception(f"API???????: {response.status_code}")
     except Exception as e:
-        logger.error(f"µ÷ÓÃModelArts APIÊ±³ö´í: {str(e)}")
+        logger.error(f"????ModelArts API?????: {str(e)}")
         raise
 
-# ½âÎöÄ£ĞÍ½á¹û
+# ?????????
 def parse_model_result(result):
     try:
-        # ¸ù¾İÊµ¼ÊÄ£ĞÍÊä³ö¸ñÊ½½âÎö½á¹û
-        # ÕâÀïÊÇÊ¾Àı´úÂë£¬ĞèÒª¸ù¾İÊµ¼ÊÄ£ĞÍÊä³öµ÷Õû
+        # ???????????????????????
+        # ?????????????????????????????????
         predictions = result.get("predictions", [])
         
         if not predictions:
             return {
                 "status": "error",
-                "message": "Î´»ñµÃÔ¤²â½á¹û"
+                "message": "Î´????????"
             }
         
-        # ½âÎöÔ¤²âÀà±ğºÍÖÃĞÅ¶È
-        cell_types = ["Õı³£", "ASC-US", "LSIL", "HSIL"]
+        # ç¡®å®šç±»åˆ«åç§°
+        class_names = {
+            "normal": "æ­£å¸¸",
+            "inflammation": "ç‚ç—‡",
+            "ascus": "è½»åº¦å¼‚å¸¸",
+            "lsil": "ä¸­åº¦å¼‚å¸¸",
+            "hsil": "é‡åº¦å¼‚å¸¸",
+            "scc": "æ¶æ€§"
+        }
+        
         prediction = predictions[0]
         
-        # ¼ÙÉèÄ£ĞÍ·µ»ØµÄÊÇÀà±ğµÄ¸ÅÂÊ·Ö²¼
+        # è·å–é¢„æµ‹ç±»åˆ«å’Œç½®ä¿¡åº¦
         class_index = int(np.argmax(prediction))
         confidence = float(np.max(prediction))
+        
+        # æ˜ å°„åˆ°ç±»åˆ«åç§°
+        category_map = ["æ­£å¸¸", "è½»åº¦å¼‚å¸¸", "ä¸­åº¦å¼‚å¸¸", "é‡åº¦å¼‚å¸¸"]
+        cell_type = category_map[class_index] if class_index < len(category_map) else "æœªçŸ¥"
         
         return {
             "status": "success",
@@ -131,70 +146,121 @@ def parse_model_result(result):
             "suggestion": get_diagnostic_suggestion(class_index, confidence)
         }
     except Exception as e:
-        logger.error(f"½âÎöÄ£ĞÍ½á¹ûÊ§°Ü: {str(e)}")
+        logger.error(f"????????????: {str(e)}")
         raise
 
-# »ñÈ¡Õï¶Ï½¨Òé
-def get_diagnostic_suggestion(cell_type_index, confidence):
-    suggestions = [
-        "½¨Òé¶¨ÆÚ¸´²é£¬Î´¼ûÃ÷ÏÔÒì³£Ï¸°û¡£",
-        "·¢ÏÖ·ÇµäĞÍÁÛ×´Ï¸°û£¬ÒâÒå²»Ã÷È·£¬½¨Òé½øĞĞHPV¼ì²âºÍ¶¨ÆÚËæ·Ã¡£",
-        "·¢ÏÖµÍ¼¶±ğÁÛ×´ÉÏÆ¤ÄÚ²¡±ä£¬½¨Òé½øĞĞÒõµÀ¾µ¼ì²éºÍ×éÖ¯²¡ÀíÑ§ÆÀ¹À¡£",
-        "·¢ÏÖ¸ß¼¶±ğÁÛ×´ÉÏÆ¤ÄÚ²¡±ä£¬½¨ÒéÁ¢¼´½øĞĞÒõµÀ¾µ¼ì²éºÍ×éÖ¯²¡ÀíÑ§ÆÀ¹À¡£"
-    ]
-    
-    if cell_type_index < len(suggestions):
-        return suggestions[cell_type_index]
-    else:
-        return "Çë½áºÏÁÙ´²Çé¿ö½øĞĞ×ÛºÏÆÀ¹À¡£"
+def get_diagnostic_suggestion(category, confidence):
+    """
+    æ ¹æ®è¯Šæ–­ç±»åˆ«ç”Ÿæˆè¯Šæ–­å»ºè®®
+    """
+    try:
+        suggestions = {
+            "æ­£å¸¸": "ç»†èƒå­¦æ£€æŸ¥æœªè§æ˜æ˜¾å¼‚å¸¸ç»†èƒï¼Œå»ºè®®æŒ‰ç…§å¸¸è§„ç­›æŸ¥è®¡åˆ’è¿›è¡Œå®šæœŸå¤æŸ¥ï¼ˆé€šå¸¸ä¸º1-3å¹´ä¸€æ¬¡ï¼‰ã€‚å»ºè®®ä¿æŒå¥åº·çš„ç”Ÿæ´»æ–¹å¼ï¼ŒåŒ…æ‹¬å‡è¡¡é¥®é£Ÿã€é€‚é‡è¿åŠ¨å’Œé¿å…å¸çƒŸç­‰ä¸è‰¯ä¹ æƒ¯ã€‚",
+            "è½»åº¦å¼‚å¸¸": "å‘ç°ä¸å…¸å‹é³çŠ¶ç»†èƒ(ASC-US)ã€‚å»ºè®®è¿›è¡Œé«˜å±å‹HPVæ£€æµ‹ï¼Œå¦‚HPVé˜³æ€§ï¼Œåº”è½¬è¯Šé˜´é“é•œæ£€æŸ¥ï¼›å¦‚HPVé˜´æ€§ï¼Œå¯åœ¨12ä¸ªæœˆåé‡å¤ç»†èƒå­¦æ£€æŸ¥æˆ–3å¹´åè”åˆç­›æŸ¥ã€‚",
+            "ä¸­åº¦å¼‚å¸¸": "æç¤ºä½åº¦é³çŠ¶ä¸Šçš®å†…ç—…å˜(LSIL)ï¼Œä¸HPVæ„ŸæŸ“ç›¸å…³ã€‚å»ºè®®è¿›è¡Œé˜´é“é•œæ£€æŸ¥åŠå®«é¢ˆç»„ç»‡æ´»æ£€ï¼Œä»¥æ’é™¤æ›´é«˜çº§åˆ«ç—…å˜ã€‚å¯¹äº25å²ä»¥ä¸‹å¥³æ€§ï¼Œå¯è€ƒè™‘6ä¸ªæœˆåå¤æŸ¥ç»†èƒå­¦åŠé˜´é“é•œã€‚",
+            "é‡åº¦å¼‚å¸¸": "æç¤ºé«˜åº¦é³çŠ¶ä¸Šçš®å†…ç—…å˜(HSIL)ï¼Œå±äºå®«é¢ˆç™Œå‰ç—…å˜ã€‚å»ºè®®ç«‹å³è¿›è¡Œé˜´é“é•œæ£€æŸ¥åŠå®«é¢ˆæ´»æ£€ä»¥æ˜ç¡®è¯Šæ–­ï¼Œç¡®è¯Šåé€šå¸¸éœ€è¦è¿›è¡Œå®«é¢ˆé”¥åˆ‡æœ¯ç­‰æ²»ç–—ï¼Œé˜²æ­¢è¿›å±•ä¸ºå®«é¢ˆç™Œã€‚",
+            "æ¶æ€§": "æç¤ºå¯èƒ½å­˜åœ¨å®«é¢ˆæ¶æ€§è‚¿ç˜¤ã€‚éœ€ç«‹å³è½¬è¯Šè‡³å¦‡ç§‘è‚¿ç˜¤ä¸“ç§‘ï¼Œè¿›è¡Œé˜´é“é•œä¸‹å¤šç‚¹æ´»æ£€ã€å®«é¢ˆç®¡æ”åˆ®ç­‰æ£€æŸ¥æ˜ç¡®è¯Šæ–­ï¼Œå¹¶åˆ¶å®šä¸ªä½“åŒ–æ²»ç–—æ–¹æ¡ˆã€‚"
+        }
+        
+        base_suggestion = suggestions.get(category, "å»ºè®®å’¨è¯¢ä¸“ä¸šåŒ»ç”Ÿä»¥è·å–æ›´è¯¦ç»†çš„è¯Šæ–­å’Œæ²»ç–—å»ºè®®ã€‚")
+        
+        # æ·»åŠ ç½®ä¿¡åº¦ç›¸å…³è¯´æ˜
+        if isinstance(confidence, dict):
+            max_conf = max(confidence.values()) if confidence else 0
+        else:
+            max_conf = confidence
+        
+        # æ ¹æ®ç½®ä¿¡åº¦æ·»åŠ é¢å¤–å»ºè®®
+        if max_conf < 0.5:
+            additional = "\n\nã€æ³¨æ„ã€‘ç”±äºè¯Šæ–­ç½®ä¿¡åº¦è¾ƒä½(" + str(round(max_conf*100)) + "%)ï¼Œå»ºè®®è¿›è¡Œé‡å¤æ£€æµ‹æˆ–ç»“åˆå…¶ä»–æ£€æŸ¥æ–¹æ³•ä»¥è·å–æ›´å‡†ç¡®çš„è¯Šæ–­ç»“æœã€‚"
+        elif max_conf < 0.8:
+            additional = "\n\nã€æç¤ºã€‘è¯Šæ–­ç»“æœä¸­ç­‰å¯ä¿¡(" + str(round(max_conf*100)) + "%)ï¼Œè¯·ç»“åˆä¸´åºŠç—‡çŠ¶å’Œå…¶ä»–æ£€æŸ¥ç»“æœç»¼åˆåˆ¤æ–­ã€‚"
+        else:
+            additional = "\n\nã€æç¤ºã€‘è¯Šæ–­ç»“æœé«˜å¯ä¿¡åº¦(" + str(round(max_conf*100)) + "%)ï¼Œä½†ä»éœ€ç”±ä¸“ä¸šåŒ»å¸ˆè¿›è¡Œæœ€ç»ˆç¡®è®¤ã€‚"
+            
+        return base_suggestion + additional
+    except Exception as e:
+        logger.error(f"ç”Ÿæˆè¯Šæ–­å»ºè®®æ—¶å‡ºé”™: {str(e)}")
+        return "å»ºè®®å’¨è¯¢ä¸“ä¸šåŒ»ç”Ÿä»¥è·å–æ›´è¯¦ç»†çš„è¯Šæ–­å’Œæ²»ç–—å»ºè®®ã€‚"
 
-# APIÂ·ÓÉ - ÉÏ´«Í¼Ïñ²¢½øĞĞÕï¶Ï
+# APIè·¯ç”± - å¤„ç†å›¾åƒè¯Šæ–­è¯·æ±‚
 @app.route('/api/diagnose', methods=['POST'])
 def diagnose():
+    """
+    å¤„ç†å›¾åƒè¯Šæ–­è¯·æ±‚
+    """
     try:
-        # ¼ì²éÊÇ·ñÓĞÎÄ¼şÉÏ´«
-        if 'file' not in request.files:
-            return jsonify({"status": "error", "message": "Î´ÉÏ´«ÎÄ¼ş"}), 400
+        # æ£€æŸ¥è¯·æ±‚ä¸­æ˜¯å¦åŒ…å«æ–‡ä»¶
+        if 'image' not in request.files:
+            return jsonify({"status": "error", "message": "æœªæ¥æ”¶åˆ°å›¾åƒæ–‡ä»¶"}), 400
         
-        file = request.files['file']
+        file = request.files['image']
         
-        # ¼ì²éÎÄ¼şÃû
+        # æ£€æŸ¥æ–‡ä»¶å
         if file.filename == '':
-            return jsonify({"status": "error", "message": "Î´Ñ¡ÔñÎÄ¼ş"}), 400
+            return jsonify({"status": "error", "message": "æœªé€‰æ‹©å›¾åƒæ–‡ä»¶"}), 400
         
-        # ¼ì²éÎÄ¼şÀàĞÍ
-        if file and allowed_file(file.filename):
-            # ±£´æÎÄ¼ş
-            filename = os.path.join(config["upload_folder"], file.filename)
-            file.save(filename)
+        # æ£€æŸ¥æ–‡ä»¶ç±»å‹
+        if not allowed_file(file.filename):
+            return jsonify({"status": "error", "message": "ä¸æ”¯æŒçš„æ–‡ä»¶ç±»å‹ï¼Œè¯·ä¸Šä¼ PNGã€JPGã€JPEGæˆ–GIFæ ¼å¼çš„å›¾ç‰‡"}), 400
+        
+        # ä¿å­˜æ–‡ä»¶
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        try:
+            # é¢„å¤„ç†å›¾åƒ
+            logger.info(f"å¼€å§‹é¢„å¤„ç†å›¾åƒ: {filename}")
+            processed_image = preprocess_image(filepath)
             
-            try:
-                # Ô¤´¦ÀíÍ¼Ïñ
-                processed_image = preprocess_image(filename)
+            # è°ƒç”¨ModelArts APIè¿›è¡Œæ¨ç†
+            logger.info("è°ƒç”¨æ¨ç†æœåŠ¡è¿›è¡ŒAIåˆ†æ")
+            model_result = call_modelarts_inference(processed_image)
+            
+            # è§£æç»“æœ
+            logger.info("è§£ææ¨¡å‹è¿”å›ç»“æœ")
+            diagnostic_result = parse_model_result(model_result)
+            
+            if not diagnostic_result:
+                return jsonify({"status": "error", "message": "æ— æ³•è·å–æœ‰æ•ˆçš„è¯Šæ–­ç»“æœ"}), 500
+            
+            # ç”Ÿæˆè¯Šæ–­å»ºè®®
+            logger.info("ç”Ÿæˆè¯Šæ–­å»ºè®®")
+            diagnostic_result['suggestion'] = get_diagnostic_suggestion(diagnostic_result.get('cell_type', 'æœªçŸ¥'), diagnostic_result.get('confidence', 0))
+            
+            # æ·»åŠ å¤„ç†çŠ¶æ€ä¿¡æ¯
+            diagnostic_result['status'] = 'success'
+            
+            # è¿”å›ç»“æœ
+            logger.info("è¯Šæ–­å®Œæˆï¼Œè¿”å›ç»“æœ")
+            return jsonify(diagnostic_result)
+            
+        finally:
+            # åˆ é™¤ä¸´æ—¶æ–‡ä»¶
+            if os.path.exists(filepath):
+                os.remove(filepath)
                 
-                # µ÷ÓÃModelArts API½øĞĞÍÆÀí
-                model_result = call_modelarts_inference(processed_image)
-                
-                # ½âÎö½á¹û
-                diagnostic_result = parse_model_result(model_result)
-                
-                return jsonify(diagnostic_result)
-            finally:
-                # ¿ÉÑ¡£º´¦ÀíÍê³ÉºóÉ¾³ıÁÙÊ±ÎÄ¼ş
-                # os.remove(filename)
-                pass
-        else:
-            return jsonify({"status": "error", "message": "²»Ö§³ÖµÄÎÄ¼şÀàĞÍ"}), 400
-    
     except Exception as e:
-        logger.error(f"Õï¶Ï¹ı³ÌÖĞ³ö´í: {str(e)}")
-        return jsonify({"status": "error", "message": f"´¦Àí¹ı³ÌÖĞ³ö´í: {str(e)}"}), 500
+        logger.error(f"è¯Šæ–­è¿‡ç¨‹ä¸­å‘ç”Ÿé”™è¯¯: {str(e)}")
+        return jsonify({"status": "error", "message": f"ç³»ç»Ÿå¤„ç†æ—¶å‘ç”Ÿé”™è¯¯: {str(e)}ï¼Œè¯·ç¨åé‡è¯•æˆ–è”ç³»ç®¡ç†å‘˜"}), 500
 
-# Ò³ÃæÂ·ÓÉ
+# æ·»åŠ é™æ€æ–‡ä»¶è·¯ç”±
+@app.route('/<path:path>')
+def static_file(path):
+    """
+    æä¾›é™æ€æ–‡ä»¶
+    """
+    return send_from_directory(app.static_folder, path)
+
+# é¦–é¡µè·¯ç”±
 @app.route('/')
 def index():
+    """
+    è¿”å›é¦–é¡µ
+    """
     return render_template('index.html')
 
-# Æô¶¯Ó¦ÓÃ
+# å¯åŠ¨æœåŠ¡å™¨
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

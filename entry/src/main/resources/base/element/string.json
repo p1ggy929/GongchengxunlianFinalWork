@@ -2,15 +2,23 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "宫颈细胞学AI辅助诊断系统"
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "宫颈细胞学AI辅助诊断系统主入口"
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "宫颈细胞学诊断"
+    },
+    {
+      "name": "internet_permission_reason",
+      "value": "需要网络访问权限以连接AI诊断服务"
+    },
+    {
+      "name": "read_media_permission_reason",
+      "value": "需要读取媒体文件权限以选择和分析图像"
     }
   ]
 }
