@@ -1,0 +1,8 @@
+{
+  "modelarts_api_url": "https://your-modelarts-inference-endpoint",
+  "modelarts_api_key": "your-api-key-here",
+  "upload_folder": "uploads",
+  "allowed_extensions": ["png", "jpg", "jpeg", "tiff"],
+  "model_input_shape": [512, 512, 3],
+  "cell_types": ["??", "ASC-US", "LSIL", "HSIL"]
+}
