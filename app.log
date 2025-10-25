@@ -66,3 +66,190 @@
 2025-10-24 15:40:40,523 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 15:40:40] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
 2025-10-24 15:40:40,524 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 15:40:40] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
 2025-10-24 15:40:40,606 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 15:40:40] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=wS31OScaMpE8hvKWnik7 HTTP/1.1[0m" 304 -
+2025-10-24 21:41:23,070 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:41:23,070 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:41:23,071 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:41:23,540 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:41:23,542 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:41:25,266 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:41:25] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-24 21:41:25,365 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:41:25] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:41:25,387 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:41:25] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:41:25,421 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:41:25] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=XdSoeCbAkV9w10lGLHpX HTTP/1.1" 200 -
+2025-10-24 21:43:25,843 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:25] "[35m[1mGET /?ide_webview_request_time=1761313405479 HTTP/1.1[0m" 500 -
+2025-10-24 21:43:26,086 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:26] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:43:26,163 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:26] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:43:26,183 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:26] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=XdSoeCbAkV9w10lGLHpX HTTP/1.1" 200 -
+2025-10-24 21:43:26,499 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:26] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 21:43:46,745 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:43:46,745 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:43:46,746 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:43:46,983 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:43:46,985 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:43:59,095 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:59] "[35m[1mGET /?ide_webview_request_time=1761313439081 HTTP/1.1[0m" 500 -
+2025-10-24 21:43:59,448 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:59] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:43:59,449 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:59] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:43:59,690 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:59] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=XdSoeCbAkV9w10lGLHpX HTTP/1.1[0m" 304 -
+2025-10-24 21:43:59,781 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:43:59] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 21:44:31,440 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:44:31,440 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:44:31,440 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:44:31,914 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:44:31,915 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:44:33,775 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:44:33] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-24 21:44:33,906 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:44:33] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:44:33,906 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:44:33] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:44:33,938 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:44:33] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=kQ671Jw0pDnfaTplnMRt HTTP/1.1" 200 -
+2025-10-24 21:45:41,390 - werkzeug - INFO -  * Detected change in 'E:\\HUAWEI\\main.py', reloading
+2025-10-24 21:45:41,423 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:45:41,716 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:45:41,731 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:45:41,732 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:45:42,270 - werkzeug - INFO -  * Detected change in 'E:\\HUAWEI\\main.py', reloading
+2025-10-24 21:45:42,348 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:45:42,984 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:45:42,996 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:45:42,999 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:45:57,791 - werkzeug - INFO -  * Detected change in 'E:\\HUAWEI\\main.py', reloading
+2025-10-24 21:45:57,862 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:45:58,067 - werkzeug - INFO -  * Detected change in 'E:\\HUAWEI\\main.py', reloading
+2025-10-24 21:45:58,158 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:45:58,165 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:45:58,173 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:45:58,175 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:45:58,740 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:45:58,752 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:45:58,754 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:46:38,921 - werkzeug - INFO -  * Detected change in 'E:\\HUAWEI\\main.py', reloading
+2025-10-24 21:46:39,051 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:46:39,312 - werkzeug - INFO -  * Detected change in 'E:\\HUAWEI\\main.py', reloading
+2025-10-24 21:46:39,370 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:46:39,720 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:46:39,736 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:46:39,739 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:46:39,785 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:46:39,798 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:46:39,801 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:47:24,820 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:47:24,842 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:47:24,842 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:47:24,843 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:47:25,138 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:47:25,153 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:47:25,154 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:47:32,453 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:32] "[35m[1mGET /?ide_webview_request_time=1761313652132 HTTP/1.1[0m" 500 -
+2025-10-24 21:47:32,746 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:32] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:47:32,772 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:32] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:47:32,797 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:32] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=CD0FOjlOzE7jhnZBDXug HTTP/1.1" 200 -
+2025-10-24 21:47:33,112 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:33] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 21:47:39,165 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:39] "[35m[1mGET /?ide_webview_request_time=1761313659159 HTTP/1.1[0m" 500 -
+2025-10-24 21:47:39,482 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:39] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:47:39,482 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:39] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:47:39,743 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:39] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=CD0FOjlOzE7jhnZBDXug HTTP/1.1[0m" 304 -
+2025-10-24 21:47:39,807 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:47:39] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 21:48:15,338 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:48:15,358 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:48:15,358 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:48:15,359 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:48:15,930 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:48:15,943 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:48:15,945 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:48:18,485 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:48:18] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-24 21:48:18,611 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:48:18] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-24 21:48:18,612 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:48:18] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-24 21:48:18,641 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:48:18] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=pG0ty6Bnbjl3vFDpNGkh HTTP/1.1" 200 -
+2025-10-24 21:49:49,348 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:49:49,370 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:49:49,370 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:49:49,371 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:49:49,956 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:49:49,967 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:49:49,970 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:49:51,911 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:49:51] "GET / HTTP/1.1" 200 -
+2025-10-24 21:49:53,496 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:49:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-24 21:51:31,142 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:51:31,162 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:51:31,162 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:51:31,163 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:51:31,786 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:51:31,798 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:51:31,801 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:51:33,071 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:51:33] "GET / HTTP/1.1" 200 -
+2025-10-24 21:51:36,840 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:51:36] "GET / HTTP/1.1" 200 -
+2025-10-24 21:53:19,670 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:53:19,696 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 21:53:19,696 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 21:53:19,697 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 21:53:20,019 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 21:53:20,034 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 21:53:20,037 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 21:53:30,897 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:53:30] "GET /?ide_webview_request_time=1761314010570 HTTP/1.1" 200 -
+2025-10-24 21:53:32,306 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 21:53:32] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 22:00:09,880 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 22:00:09,902 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 22:00:09,902 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 22:00:09,902 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 22:00:10,156 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 22:00:10,166 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 22:00:10,171 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 22:00:16,359 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:00:16] "GET /?ide_webview_request_time=1761314416038 HTTP/1.1" 200 -
+2025-10-24 22:00:16,599 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:00:16] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 22:00:23,508 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:00:23] "GET /?ide_webview_request_time=1761314423506 HTTP/1.1" 200 -
+2025-10-24 22:00:23,846 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:00:23] "[33mGET /@vite/client HTTP/1.1[0m" 404 -
+2025-10-24 22:01:07,992 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 22:01:08,010 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-24 22:01:08,010 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-24 22:01:08,012 - werkzeug - INFO -  * Restarting with stat
+2025-10-24 22:01:08,583 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-24 22:01:08,597 - werkzeug - WARNING -  * Debugger is active!
+2025-10-24 22:01:08,597 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-24 22:01:11,789 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:11] "GET / HTTP/1.1" 200 -
+2025-10-24 22:01:36,954 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:36] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:39,820 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:39] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:40,312 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:40] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:40,674 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:40] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:40,936 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:40] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:41,129 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:41] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:41,306 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:41] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:41,458 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:41] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-24 22:01:46,430 - werkzeug - INFO - 127.0.0.1 - - [24/Oct/2025 22:01:46] "[31m[1mPOST /api/diagnose HTTP/1.1[0m" 400 -
+2025-10-25 14:39:08,764 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-25 14:39:08,800 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.43:5000
+2025-10-25 14:39:08,800 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-25 14:39:08,801 - werkzeug - INFO -  * Restarting with stat
+2025-10-25 14:39:09,254 - __main__ - INFO - ≥…π¶∂¡»°≈‰÷√Œƒº˛£¨ π”√±‡¬Î: utf-8
+2025-10-25 14:39:09,265 - werkzeug - WARNING -  * Debugger is active!
+2025-10-25 14:39:09,267 - werkzeug - INFO -  * Debugger PIN: 143-354-759
+2025-10-25 14:39:10,812 - werkzeug - INFO - 127.0.0.1 - - [25/Oct/2025 14:39:10] "GET / HTTP/1.1" 200 -

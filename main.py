@@ -33,18 +33,38 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 # 允许的图像扩展名
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'tiff'}
 
-# ???????????
+# 加载配置文件
 def load_config():
     try:
-        with open('config.json', 'r', encoding='utf-8') as f:
-            return json.load(f)
+        # 尝试用多种编码读取文件
+        encodings = ['utf-8', 'gbk', 'latin-1']
+        for encoding in encodings:
+            try:
+                with open('config.json', 'r', encoding=encoding) as f:
+                    config = json.load(f)
+                    logger.info(f"成功读取配置文件，使用编码: {encoding}")
+                    return config
+            except UnicodeDecodeError:
+                logger.warning(f"使用编码 {encoding} 读取配置文件失败，尝试下一种编码")
+                continue
+        
+        # 如果所有编码都失败，使用默认配置
+        logger.error("无法读取配置文件，使用默认配置")
+        return {
+            "modelarts_api_url": "https://example.com/modelarts/api/v1/inference",  # ModelArts推理API地址
+            "modelarts_api_key": "your_api_key_here",  # ModelArts API密钥
+            "upload_folder": "uploads",
+            "allowed_extensions": ALLOWED_EXTENSIONS,
+            "cell_types": ["正常", "ASC-US", "LSIL", "HSIL"]
+        }
     except FileNotFoundError:
         logger.warning("配置文件未找到，使用默认配置")
         return {
             "modelarts_api_url": "https://example.com/modelarts/api/v1/inference",  # ModelArts推理API地址
             "modelarts_api_key": "your_api_key_here",  # ModelArts API密钥
             "upload_folder": "uploads",
-            "allowed_extensions": ALLOWED_EXTENSIONS
+            "allowed_extensions": ALLOWED_EXTENSIONS,
+            "cell_types": ["正常", "ASC-US", "LSIL", "HSIL"]
         }
 
 config = load_config()
@@ -135,15 +155,15 @@ def parse_model_result(result):
         class_index = int(np.argmax(prediction))
         confidence = float(np.max(prediction))
         
-        # 映射到类别名称
-        category_map = ["正常", "轻度异常", "中度异常", "重度异常"]
+        # 获取类别名称映射
+        category_map = config.get("cell_types", ["正常", "轻度异常", "中度异常", "重度异常"])
         cell_type = category_map[class_index] if class_index < len(category_map) else "未知"
         
         return {
             "status": "success",
-            "cell_type": cell_types[class_index],
+            "cell_type": cell_type,
             "confidence": confidence,
-            "suggestion": get_diagnostic_suggestion(class_index, confidence)
+            "suggestion": get_diagnostic_suggestion(cell_type, confidence)
         }
     except Exception as e:
         logger.error(f"????????????: {str(e)}")
@@ -154,15 +174,35 @@ def get_diagnostic_suggestion(category, confidence):
     根据诊断类别生成诊断建议
     """
     try:
+        # 映射不同的类别名称到标准名称
+        category_map = {
+            "正常": "正常",
+            "ASC-US": "轻度异常",
+            "LSIL": "中度异常",
+            "HSIL": "重度异常",
+            "ascus": "轻度异常",
+            "lsil": "中度异常",
+            "hsil": "重度异常",
+            "轻度异常": "轻度异常",
+            "中度异常": "中度异常",
+            "重度异常": "重度异常",
+            "恶性": "恶性",
+            "scc": "恶性"
+        }
+        
+        # 获取标准类别名称
+        standard_category = category_map.get(category, "未知")
+        
         suggestions = {
             "正常": "细胞学检查未见明显异常细胞，建议按照常规筛查计划进行定期复查（通常为1-3年一次）。建议保持健康的生活方式，包括均衡饮食、适量运动和避免吸烟等不良习惯。",
             "轻度异常": "发现不典型鳞状细胞(ASC-US)。建议进行高危型HPV检测，如HPV阳性，应转诊阴道镜检查；如HPV阴性，可在12个月后重复细胞学检查或3年后联合筛查。",
             "中度异常": "提示低度鳞状上皮内病变(LSIL)，与HPV感染相关。建议进行阴道镜检查及宫颈组织活检，以排除更高级别病变。对于25岁以下女性，可考虑6个月后复查细胞学及阴道镜。",
             "重度异常": "提示高度鳞状上皮内病变(HSIL)，属于宫颈癌前病变。建议立即进行阴道镜检查及宫颈活检以明确诊断，确诊后通常需要进行宫颈锥切术等治疗，防止进展为宫颈癌。",
-            "恶性": "提示可能存在宫颈恶性肿瘤。需立即转诊至妇科肿瘤专科，进行阴道镜下多点活检、宫颈管搔刮等检查明确诊断，并制定个体化治疗方案。"
+            "恶性": "提示可能存在宫颈恶性肿瘤。需立即转诊至妇科肿瘤专科，进行阴道镜下多点活检、宫颈管搔刮等检查明确诊断，并制定个体化治疗方案。",
+            "未知": "建议咨询专业医生以获取更详细的诊断和治疗建议。"
         }
         
-        base_suggestion = suggestions.get(category, "建议咨询专业医生以获取更详细的诊断和治疗建议。")
+        base_suggestion = suggestions.get(standard_category, suggestions["未知"])
         
         # 添加置信度相关说明
         if isinstance(confidence, dict):

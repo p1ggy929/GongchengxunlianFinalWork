@@ -142,7 +142,7 @@
                             
                             <div v-else class="text-center">
                                 <img :src="selectedImage" class="preview-image" alt="预览图像">
-                                <p class="mt-2 text-sm text-muted">{{ fileName }}</p>
+                                <p class="mt-2 text-sm text-muted">{% raw %}{{ fileName }}{% endraw %}</p>
                                 <button class="btn btn-danger btn-sm mt-2" @click="clearImage">
                                     清除图像
                                 </button>
@@ -157,7 +157,7 @@
                                 @click="diagnose"
                             >
                                 <span v-if="isProcessing" class="loading-spinner me-2"></span>
-                                {{ isProcessing ? '诊断中...' : '开始AI诊断' }}
+                                {% raw %}{{ isProcessing ? '处理中...' : '开始AI诊断' }}{% endraw %}
                             </button>
                         </div>
                     </div>
@@ -175,14 +175,14 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#adb5bd" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
-                            <p class="mt-3">上传图像后点击诊断按钮获取结果</p>
+                            <p class="mt-3">请上传图像并点击诊断按钮获取结果</p>
                         </div>
                         
-                        <!-- 加载状态 -->
+                        <!-- 处理状态 -->
                         <div v-else-if="isProcessing" class="text-center py-5">
                             <div class="loading-spinner"></div>
-                            <p class="mt-3">AI正在分析图像，请稍候...</p>
-                            <p class="text-sm text-muted">根据图像复杂度，可能需要10-30秒</p>
+                            <p class="mt-3">AI正在分析图像中，请稍候...</p>
+                            <p class="text-sm text-muted">根据图像复杂度，通常需要10-30秒</p>
                         </div>
                         
                         <!-- 错误信息 -->
@@ -191,21 +191,21 @@
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                             </svg>
-                            {{ errorMessage }}
+                            {% raw %}{{ errorMessage }}{% endraw %}
                         </div>
                         
                         <!-- 诊断结果 -->
                         <div v-else-if="diagnosticResult" class="result-card">
                             <div class="mb-3">
                                 <span class="badge status-badge" :class="getResultClass(diagnosticResult.cell_type)">
-                                    {{ diagnosticResult.cell_type }}
+                                    {% raw %}{{ diagnosticResult.cell_type }}{% endraw %}
                                 </span>
                             </div>
                             
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span>置信度：</span>
-                                    <span class="font-weight-bold">{{ Math.round(diagnosticResult.confidence * 100) }}%</span>
+                                    <span class="font-weight-bold">{% raw %}{{ Math.round(diagnosticResult.confidence * 100) }}%{% endraw %}</span>
                                 </div>
                                 <div class="confidence-bar">
                                     <div 
@@ -220,12 +220,12 @@
                             
                             <div class="mb-4">
                                 <h4>诊断建议</h4>
-                                <p class="mt-2 p-3 bg-light rounded">{{ diagnosticResult.suggestion }}</p>
+                                <p class="mt-2 p-3 bg-light rounded">{% raw %}{{ diagnosticResult.suggestion }}{% endraw %}</p>
                             </div>
                             
                             <div class="mt-4 text-center">
                                 <p class="text-muted text-sm">
-                                    <small>免责声明：本系统仅提供辅助诊断建议，最终诊断结果请以临床医生判断为准。</small>
+                                    <small>本系统仅提供辅助诊断功能，最终诊断结果请以医生判断为准</small>
                                 </p>
                                 <button class="btn btn-outline-primary mt-2" @click="resetDiagnosis">
                                     重新开始
@@ -237,33 +237,33 @@
             </div>
         </div>
         
-        <!-- 系统介绍区域 -->
+        <!-- 系统信息区域 -->
         <div class="row mt-5">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">系统介绍</h2>
                         <div class="mt-3">
-                            <p>本系统基于华为ModelArts平台构建，采用深度学习技术对宫颈液基细胞学（LBC）图像进行自动分析，能够检测非典型鳞状细胞（ASC-US）、低级别鳞状上皮内病变（LSIL）和高级别鳞状上皮内病变（HSIL）等。</p>
+                            <p>本系统后端基于ModelArts平台的深度学习技术，针对宫颈液基细胞学(LBC)图像进行自动分析，能够检测出正常细胞、意义不明确的非典型鳞状细胞(ASC-US)、低度鳞状上皮内病变(LSIL)和高度鳞状上皮内病变(HSIL)等。</p>
                             
                             <div class="row mt-4">
                                 <div class="col-md-4">
                                     <div class="p-3 bg-light rounded">
                                         <h5>技术特点</h5>
                                         <ul class="mt-2 list-unstyled">
-                                            <li>? 基于ResNet-50/EfficientNet深度学习模型</li>
-                                            <li>? 在Ascend 910处理器上训练优化</li>
-                                            <li>? 支持多种图像格式和分辨率</li>
+                                            <li>• 采用ResNet-50/EfficientNet深度学习模型</li>
+                                            <li>• 基于Ascend 910处理器加速推理</li>
+                                            <li>• 支持多种图像格式和分辨率</li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="p-3 bg-light rounded">
-                                        <h5>诊断指标</h5>
+                                        <h5>性能指标</h5>
                                         <ul class="mt-2 list-unstyled">
-                                            <li>? 灵敏度：98.96%</li>
-                                            <li>? 特异度：89.15%</li>
-                                            <li>? AUC值：≥0.95</li>
+                                            <li>• 准确率：98.96%</li>
+                                            <li>• 召回率：89.15%</li>
+                                            <li>• AUC值：0.95</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -271,9 +271,9 @@
                                     <div class="p-3 bg-light rounded">
                                         <h5>适用人群</h5>
                                         <ul class="mt-2 list-unstyled">
-                                            <li>? 宫颈癌筛查人群</li>
-                                            <li>? 需要细胞学复查的患者</li>
-                                            <li>? 基层医疗机构辅助诊断</li>
+                                            <li>• 需要宫颈癌筛查人群</li>
+                                            <li>• 细胞学检查异常者</li>
+                                            <li>• 需要定期体检者</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -287,7 +287,7 @@
 
     <footer class="mt-5 py-4 bg-dark text-white text-center">
         <div class="container">
-            <p>&copy; 2025 宫颈细胞学AI辅助诊断系统 - 基于华为ModelArts平台开发</p>
+            <p>&copy; 2025 宫颈细胞学AI辅助诊断系统 - 基于ModelArts平台开发</p>
         </div>
     </footer>
 
@@ -328,14 +328,14 @@
                 },
                 
                 processFile(file) {
-                    // 检查文件类型
+                    // 验证文件类型
                     const validTypes = ['image/png', 'image/jpeg', 'image/tiff']
                     if (!validTypes.includes(file.type)) {
                         this.errorMessage = '请上传PNG、JPG或TIFF格式的图像文件'
                         return
                     }
                     
-                    // 清除之前的错误
+                    // 清除之前的结果
                     this.errorMessage = null
                     this.diagnosticResult = null
                     
@@ -349,7 +349,7 @@
                     }
                     reader.readAsDataURL(file)
                     
-                    // 重置文件输入，允许重新选择相同文件
+                    // 重置文件输入以便可以选择相同文件
                     this.$refs.fileInput.value = ''
                 },
                 
