@@ -223,9 +223,27 @@ def get_diagnostic_suggestion(category, confidence):
         logger.error(f"生成诊断建议时出错: {str(e)}")
         return "建议咨询专业医生以获取更详细的诊断和治疗建议。"
 
+# 简单诊断路由（用于前端调用）
+@app.route('/diagnose', methods=['POST'])
+def simple_diagnose():
+    """
+    提供简单的模拟诊断结果
+    """
+    try:
+        # 模拟诊断结果
+        result = {
+            "status": "success",
+            "cell_type": "正常",
+            "confidence": 0.95,
+            "suggestion": "细胞学检查未见明显异常细胞，建议按照常规筛查计划进行定期复查。"
+        }
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 # API路由 - 处理图像诊断请求
 @app.route('/api/diagnose', methods=['POST'])
-def diagnose():
+def api_diagnose():
     """
     处理图像诊断请求
     """
@@ -285,6 +303,8 @@ def diagnose():
         logger.error(f"诊断过程中发生错误: {str(e)}")
         return jsonify({"status": "error", "message": f"系统处理时发生错误: {str(e)}，请稍后重试或联系管理员"}), 500
 
+# 已在文件末尾定义了这些路由
+
 # 添加静态文件路由
 @app.route('/<path:path>')
 def static_file(path):
@@ -293,6 +313,22 @@ def static_file(path):
     """
     return send_from_directory(app.static_folder, path)
 
+# 标准静态文件路由
+@app.route('/static/<path:path>')
+def serve_static(path):
+    """
+    提供静态文件夹中的文件
+    """
+    return send_from_directory('templates', path)
+
+# 模块文件路由
+@app.route('/modules/<path:path>')
+def module_file(path):
+    """
+    提供模块文件
+    """
+    return send_from_directory(os.path.join(app.template_folder, 'modules'), path)
+
 # 首页路由
 @app.route('/')
 def index():
@@ -300,6 +336,48 @@ def index():
     返回首页
     """
     return render_template('index.html')
+
+# 提供特定模块的路由 - 所有页面都渲染同一个index.html，通过前端JS根据URL动态加载内容
+@app.route('/history')
+def history():
+    """
+    提供历史记录页面
+    """
+    return render_template('index.html')
+
+# 路由已在文件其他位置定义
+
+@app.route('/statistics')
+def statistics():
+    """
+    提供统计分析页面
+    """
+    return render_template('index.html')
+
+@app.route('/about')
+def about():
+    """
+    提供关于系统页面
+    """
+    return render_template('index.html')
+
+# API路由 - 获取模块内容
+@app.route('/api/modules/<module_name>', methods=['GET'])
+def get_module_content(module_name):
+    """
+    获取指定模块的HTML内容
+    """
+    try:
+        module_path = os.path.join(app.template_folder, 'modules', f'{module_name}.html')
+        if os.path.exists(module_path):
+            with open(module_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            return jsonify({"status": "success", "content": content})
+        else:
+            return jsonify({"status": "error", "message": f"模块 {module_name} 不存在"}), 404
+    except Exception as e:
+        logger.error(f"加载模块内容失败: {str(e)}")
+        return jsonify({"status": "error", "message": "加载模块内容时发生错误"}), 500
 
 # 启动服务器
 if __name__ == '__main__':

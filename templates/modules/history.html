@@ -1,0 +1,316 @@
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="fa fa-history text-primary mr-2"></i>历史诊断记录</h5>
+            <button id="clear-all-history" class="btn btn-danger btn-sm" style="display: none;">
+                <i class="fa fa-trash mr-1"></i>清空所有记录
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- 历史记录搜索和筛选 -->
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        <input 
+                            type="text" 
+                            id="history-search" 
+                            class="form-control" 
+                            placeholder="搜索文件名或结果..."
+                        >
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select id="history-filter" class="form-select">
+                        <option value="all">所有结果类型</option>
+                        <option value="normal">正常细胞</option>
+                        <option value="ascus">ASC-US</option>
+                        <option value="lsil">LSIL</option>
+                        <option value="hsil">HSIL</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="history-sort" class="form-select">
+                        <option value="desc">最新优先</option>
+                        <option value="asc">最早优先</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 无记录提示 -->
+        <div id="empty-history" class="text-center py-5 text-muted">
+            <i class="fa fa-history fa-5x mb-3"></i>
+            <p>暂无历史诊断记录</p>
+        </div>
+        
+        <!-- 搜索无结果提示 -->
+        <div id="no-search-results" class="text-center py-5 text-muted" style="display: none;">
+            <i class="fa fa-search fa-5x mb-3"></i>
+            <p>没有找到匹配的记录</p>
+        </div>
+        
+        <!-- 历史记录列表 -->
+        <div id="history-list" class="" style="display: none;">
+            <div id="history-items" class="">
+                <!-- 历史记录项将通过JavaScript动态添加 -->
+            </div>
+            
+            <!-- 分页控件 -->
+            <div id="history-pagination-container" class="d-flex justify-content-center mt-4" style="display: none;">
+                <nav aria-label="Page navigation">
+                    <ul id="history-pagination" class="pagination">
+                        <!-- 分页按钮将通过JavaScript动态添加 -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 图像预览模态框 -->
+<div class="modal fade" id="history-image-modal" tabindex="-1" role="dialog" aria-labelledby="history-image-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="history-image-modal-label">图像预览</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" class="img-fluid" alt="预览图像">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 页面加载后初始化历史记录显示 -->
+<script>
+    // 格式化日期
+    function formatDate(timestamp) {
+        if (!timestamp) return '未知时间';
+        const date = new Date(timestamp);
+        if (isNaN(date.getTime())) return '无效时间';
+        return date.toLocaleString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+    
+    // 获取结果类型对应的样式类
+    function getResultClass(cellType) {
+        const type = (cellType || '').toLowerCase();
+        if (type.includes('正常')) return 'success';
+        if (type.includes('ascus')) return 'warning';
+        if (type.includes('lsil')) return 'warning';
+        if (type.includes('hsil')) return 'danger';
+        return 'secondary';
+    }
+    
+    // 在DOM加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取Vue实例或创建简单的替代对象
+        let vueInstance;
+        if (window.cervicalApp) {
+            vueInstance = window.cervicalApp;
+        } else {
+            // 创建临时对象
+            vueInstance = {
+                diagnosticHistory: [],
+                searchKeyword: '',
+                filterType: 'all',
+                sortOrder: 'desc',
+                currentPage: 1,
+                itemsPerPage: 10
+            };
+        }
+        
+        // 加载历史记录并显示
+        renderHistoryContent(vueInstance);
+        
+        // 绑定事件
+        bindHistoryEvents(vueInstance);
+    });
+    
+    // 渲染历史记录内容
+    function renderHistoryContent(vueInstance) {
+        const historyItems = document.getElementById('history-items');
+        const emptyHistory = document.getElementById('empty-history');
+        const noSearchResults = document.getElementById('no-search-results');
+        const historyList = document.getElementById('history-list');
+        const clearAllBtn = document.getElementById('clear-all-history');
+        
+        // 获取诊断历史数据
+        let historyData = vueInstance.diagnosticHistory || [];
+        
+        // 检查是否有历史记录
+        if (historyData.length === 0) {
+            emptyHistory.style.display = 'block';
+            noSearchResults.style.display = 'none';
+            historyList.style.display = 'none';
+            clearAllBtn.style.display = 'none';
+            return;
+        }
+        
+        // 显示历史记录列表
+        emptyHistory.style.display = 'none';
+        noSearchResults.style.display = 'none';
+        historyList.style.display = 'block';
+        clearAllBtn.style.display = 'inline-block';
+        
+        // 清空现有列表
+        if (historyItems) {
+            historyItems.innerHTML = '';
+            
+            // 为演示添加一些模拟数据
+            // 使用内联SVG替代外部图片，避免跨域请求错误
+            const sampleData = [
+                {
+                    fileName: '宫颈涂片_001.jpg',
+                    timestamp: new Date(Date.now() - 86400000).toISOString(),
+                    imageUrl: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%23e6f7ff"/><circle cx="40" cy="40" r="15" fill="%2352c41a"/><text x="40" y="45" text-anchor="middle" fill="white" font-size="14">正常</text></svg>',
+                    result: {
+                        cell_type: '正常',
+                        confidence: 0.95,
+                        suggestion: '细胞学检查未见明显异常细胞，建议按照常规筛查计划进行定期复查。'
+                    }
+                },
+                {
+                    fileName: '宫颈涂片_002.jpg',
+                    timestamp: new Date(Date.now() - 172800000).toISOString(),
+                    imageUrl: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%23fff7e6"/><circle cx="40" cy="40" r="15" fill="%23faad14"/><text x="40" y="45" text-anchor="middle" fill="white" font-size="14">ASC-US</text></svg>',
+                    result: {
+                        cell_type: 'ASC-US',
+                        confidence: 0.88,
+                        suggestion: '发现不典型鳞状细胞，建议进行高危型HPV检测。'
+                    }
+                },
+                {
+                    fileName: '宫颈涂片_003.jpg',
+                    timestamp: new Date(Date.now() - 259200000).toISOString(),
+                    imageUrl: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%23fff1f0"/><circle cx="40" cy="40" r="15" fill="%23fa541c"/><text x="40" y="45" text-anchor="middle" fill="white" font-size="14">LSIL</text></svg>',
+                    result: {
+                        cell_type: 'LSIL',
+                        confidence: 0.92,
+                        suggestion: '提示低度鳞状上皮内病变，与HPV感染相关。建议进行阴道镜检查。'
+                    }
+                }
+            ];
+            
+            // 使用实际数据或模拟数据
+            const displayData = historyData.length > 0 ? historyData : sampleData;
+            
+            // 添加历史记录项
+            displayData.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item p-3 mb-3 border rounded-lg shadow-sm hover:shadow transition-shadow';
+                historyItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0 font-weight-medium">${item.fileName || '未知文件'}</h6>
+                                <span class="ml-2 px-2 py-1 badge badge-${getResultClass(item.result?.cell_type || '')} text-white text-xs rounded">
+                                    ${item.result?.cell_type || '未知'}
+                                </span>
+                            </div>
+                            <p class="text-sm text-muted mt-1">${formatDate(item.timestamp)}</p>
+                            <p class="text-sm mt-2">${item.result?.suggestion || '暂无建议'}</p>
+                        </div>
+                        <div class="ml-3">
+                            <img src="${item.imageUrl}" alt="预览" class="history-preview rounded cursor-pointer" width="80" height="80" style="object-fit: cover; border: 2px solid #e2e8f0;">
+                        </div>
+                    </div>
+                `;
+                
+                // 添加预览点击事件
+                const previewImg = historyItem.querySelector('.history-preview');
+                if (previewImg) {
+                    previewImg.addEventListener('click', function() {
+                        viewHistoryImage(item.imageUrl);
+                    });
+                }
+                
+                historyItems.appendChild(historyItem);
+            });
+        }
+    }
+    
+    // 绑定历史记录相关事件
+    function bindHistoryEvents(vueInstance) {
+        // 搜索框事件
+        const searchInput = document.getElementById('history-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                vueInstance.searchKeyword = this.value;
+                // 这里可以添加搜索逻辑
+                console.log('搜索:', this.value);
+            });
+        }
+        
+        // 筛选下拉框事件
+        const filterSelect = document.getElementById('history-filter');
+        if (filterSelect) {
+            filterSelect.addEventListener('change', function() {
+                vueInstance.filterType = this.value;
+                // 这里可以添加筛选逻辑
+                console.log('筛选:', this.value);
+            });
+        }
+        
+        // 排序下拉框事件
+        const sortSelect = document.getElementById('history-sort');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                vueInstance.sortOrder = this.value;
+                // 这里可以添加排序逻辑
+                console.log('排序:', this.value);
+            });
+        }
+        
+        // 清空按钮事件
+        const clearAllBtn = document.getElementById('clear-all-history');
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', function() {
+                if (confirm('确定要清空所有历史记录吗？此操作不可恢复。')) {
+                    if (vueInstance.clearAllHistory) {
+                        vueInstance.clearAllHistory();
+                    } else {
+                        vueInstance.diagnosticHistory = [];
+                        // 重新渲染
+                        renderHistoryContent(vueInstance);
+                    }
+                }
+            });
+        }
+    }
+    
+    // 查看历史图像
+    function viewHistoryImage(imageUrl) {
+        const modal = document.getElementById('history-image-modal');
+        const modalImage = document.getElementById('modal-image');
+        
+        if (modal && modalImage) {
+            modalImage.src = imageUrl;
+            
+            // 显示模态框
+            if (window.bootstrap && window.bootstrap.Modal) {
+                new window.bootstrap.Modal(modal).show();
+            } else {
+                // 简单的显示方式
+                modal.style.display = 'block';
+                modal.classList.add('show');
+            }
+        }
+    }
+    
+
+</script>

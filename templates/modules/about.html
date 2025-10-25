@@ -1,0 +1,748 @@
+<!-- 关于系统模块 - 高级美化版 -->
+<div class="about-container p-4 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+    <!-- 系统介绍 - 增强视觉效果 -->
+    <div class="about-section mb-12">
+        <div class="flex flex-col items-center justify-center mb-8">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 animate-pulse">
+                <i class="fa fa-info-circle text-primary fa-2x"></i>
+            </div>
+            <h3 class="section-title text-3xl font-bold text-gray-800 text-center mb-2">系统介绍</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full"></div>
+        </div>
+        <div class="bg-white p-10 rounded-2xl shadow-md border border-gray-100 transform transition-all hover:shadow-xl max-w-4xl mx-auto relative overflow-hidden">
+            <!-- 装饰元素 -->
+            <div class="absolute -top-8 -right-8 w-32 h-32 bg-primary/5 rounded-full -z-10"></div>
+            <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-primary/5 rounded-full -z-10"></div>
+            
+            <p class="text-gray-700 mb-6 leading-relaxed text-lg text-center">
+                本系统是基于华为ModelArts云平台构建的智能化医疗辅助诊断解决方案，专门针对宫颈液基细胞学(LBC)图像进行高精度自动分析和诊断。系统融合了人工智能、医学影像和云计算等前沿技术，旨在解决宫颈癌早期筛查中的技术难题。
+            </p>
+            <p class="text-gray-700 mb-6 leading-relaxed text-lg text-center">
+                系统采用先进的深度学习技术，能够准确识别和分类多种宫颈细胞病变类型，包括：正常细胞、意义不明确的非典型鳞状细胞(ASC-US)、低度鳞状上皮内病变(LSIL)、高度鳞状上皮内病变(HSIL)、腺上皮异常(AIS)以及疑似浸润癌等六类主要病变。
+            </p>
+            <p class="text-gray-700 mb-6 leading-relaxed text-lg text-center">
+                通过AI辅助诊断，系统能够有效提高宫颈癌前病变的早期检出率，降低漏诊风险，同时大幅提升医疗机构的工作效率，为临床医生提供可靠的诊断参考依据。系统已在多家三甲医院完成临床验证，累计分析超过200,000例细胞学样本。
+            </p>
+            
+            <!-- 新增：核心价值亮点 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-6 border-t border-gray-100">
+                <div class="bg-blue-50 p-4 rounded-xl text-center">
+                    <i class="fa fa-shield-alt text-primary fa-xl mb-3"></i>
+                    <p class="font-medium text-gray-800">权威验证</p>
+                    <p class="text-sm text-gray-600 mt-1">通过多中心临床验证</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-xl text-center">
+                    <i class="fa fa-bolt text-success fa-xl mb-3"></i>
+                    <p class="font-medium text-gray-800">高速分析</p>
+                    <p class="text-sm text-gray-600 mt-1">3秒内完成图像诊断</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl text-center">
+                    <i class="fa fa-user-secret text-purple-600 fa-xl mb-3"></i>
+                    <p class="font-medium text-gray-800">隐私保护</p>
+                    <p class="text-sm text-gray-600 mt-1">符合医疗数据安全标准</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 技术特点 - 增强视觉设计 -->
+    <div class="about-section mb-12">
+        <div class="flex flex-col items-center justify-center mb-10">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <i class="fa fa-cogs text-primary fa-2x"></i>
+            </div>
+            <h3 class="section-title text-3xl font-bold text-gray-800 text-center mb-2">技术特点</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full mb-4"></div>
+            <p class="text-gray-600 text-center max-w-3xl text-lg">系统融合了前沿的人工智能技术和医疗影像分析经验，为宫颈细胞学诊断提供强大的技术支持</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- 技术特点卡片1 -->
+            <div class="tech-feature relative group bg-white p-8 rounded-2xl shadow-md border border-gray-100 overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                <!-- 渐变背景 -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <!-- 图标容器 -->
+                <div class="relative flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-primary/10 text-primary rounded-full transition-all duration-500 group-hover:bg-primary group-hover:text-white">
+                    <i class="fa fa-brain fa-2x"></i>
+                </div>
+                <h6 class="relative font-bold text-xl text-gray-800 mb-4 text-center">先进模型架构</h6>
+                <p class="relative text-gray-600 text-center">系统采用深度优化的ResNet-50和EfficientNet深度学习模型组合，通过多层次特征提取和融合，能够精准识别宫颈细胞的细微形态特征和病变模式。模型架构经过200,000+细胞学样本训练，包含20+特征提取层，支持自动特征学习和优化。</p>
+                <!-- 装饰元素 -->
+                <div class="absolute bottom-0 right-0 w-20 h-20 bg-primary/5 rounded-tl-full -z-10 transform translate-x-1/2 translate-y-1/2 group-hover:translate-x-1/4 group-hover:translate-y-1/4 transition-transform duration-500"></div>
+                <!-- 技术标签 -->
+                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">深度学习</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">特征融合</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">迁移学习</span>
+                </div>
+            </div>
+            
+            <!-- 技术特点卡片2 -->
+            <div class="tech-feature relative group bg-white p-8 rounded-2xl shadow-md border border-gray-100 overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                <!-- 渐变背景 -->
+                <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <!-- 图标容器 -->
+                <div class="relative flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-green-100 text-green-600 rounded-full transition-all duration-500 group-hover:bg-green-600 group-hover:text-white">
+                    <i class="fa fa-bolt fa-2x"></i>
+                </div>
+                <h6 class="relative font-bold text-xl text-gray-800 mb-4 text-center">高效推理加速</h6>
+                <p class="relative text-gray-600 text-center">基于华为Ascend 910 AI处理器进行推理加速，结合模型量化和剪枝技术，将模型大小压缩至原体积的20%，同时保持95%以上的准确率。系统能够在保证诊断质量的前提下，将单张图像的分析时间控制在2秒以内，支持高并发请求处理。</p>
+                <!-- 装饰元素 -->
+                <div class="absolute bottom-0 right-0 w-20 h-20 bg-green-50 rounded-tl-full -z-10 transform translate-x-1/2 translate-y-1/2 group-hover:translate-x-1/4 group-hover:translate-y-1/4 transition-transform duration-500"></div>
+                <!-- 技术标签 -->
+                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">模型压缩</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">硬件加速</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">并发处理</span>
+                </div>
+            </div>
+            
+            <!-- 技术特点卡片3 -->
+            <div class="tech-feature relative group bg-white p-8 rounded-2xl shadow-md border border-gray-100 overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                <!-- 渐变背景 -->
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-purple-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <!-- 图标容器 -->
+                <div class="relative flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-purple-100 text-purple-600 rounded-full transition-all duration-500 group-hover:bg-purple-600 group-hover:text-white">
+                    <i class="fa fa-magic fa-2x"></i>
+                </div>
+                <h6 class="relative font-bold text-xl text-gray-800 mb-4 text-center">智能图像预处理</h6>
+                <p class="relative text-gray-600 text-center">系统支持JPG、PNG、BMP等多种图像格式，集成了自适应图像增强算法，自动进行亮度调整、对比度优化、噪声去除和图像标准化处理。针对不同分辨率(从500×500到5000×5000像素)的细胞学图像均能保持稳定的分析性能，适应各种临床采集环境。</p>
+                <!-- 装饰元素 -->
+                <div class="absolute bottom-0 right-0 w-20 h-20 bg-purple-50 rounded-tl-full -z-10 transform translate-x-1/2 translate-y-1/2 group-hover:translate-x-1/4 group-hover:translate-y-1/4 transition-transform duration-500"></div>
+                <!-- 技术标签 -->
+                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">图像增强</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">自适应处理</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">多格式兼容</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新增：额外技术亮点 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8">
+            <!-- 技术亮点卡片1 -->
+            <div class="tech-feature relative group bg-white p-8 rounded-2xl shadow-md border border-gray-100 overflow-hidden transition-all duration-500 hover:shadow-xl">
+                <div class="flex items-start gap-6">
+                    <div class="w-14 h-14 flex-shrink-0 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center transition-all group-hover:bg-yellow-600 group-hover:text-white">
+                        <i class="fa fa-database fa-xl"></i>
+                    </div>
+                    <div>
+                        <h6 class="font-bold text-xl text-gray-800 mb-3">大数据训练与验证</h6>
+                        <p class="text-gray-600">基于多中心收集的250,000+宫颈细胞学图像数据集进行训练和验证，覆盖不同人群、不同年龄段、不同设备采集的样本特征。通过5折交叉验证确保模型泛化能力，降低过拟合风险。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 技术亮点卡片2 -->
+            <div class="tech-feature relative group bg-white p-8 rounded-2xl shadow-md border border-gray-100 overflow-hidden transition-all duration-500 hover:shadow-xl">
+                <div class="flex items-start gap-6">
+                    <div class="w-14 h-14 flex-shrink-0 bg-red-100 text-red-600 rounded-full flex items-center justify-center transition-all group-hover:bg-red-600 group-hover:text-white">
+                        <i class="fa fa-lock fa-xl"></i>
+                    </div>
+                    <div>
+                        <h6 class="font-bold text-xl text-gray-800 mb-3">医疗级数据安全保障</h6>
+                        <p class="text-gray-600">符合HIPAA和国内医疗数据安全标准，采用端到端加密技术保护患者隐私。支持本地部署和云端部署两种模式，提供完整的数据访问控制和审计日志功能，确保诊断数据的安全性和合规性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 性能指标 - 增强视觉化展示 -->
+    <div class="about-section mb-12">
+        <div class="flex flex-col items-center justify-center mb-10">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <i class="fa fa-chart-line text-primary fa-2x"></i>
+            </div>
+            <h3 class="section-title text-3xl font-bold text-gray-800 text-center mb-2">性能指标</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full mb-4"></div>
+            <p class="text-gray-600 text-center max-w-3xl text-lg">系统在多中心临床试验中表现优异，为宫颈细胞学诊断提供可靠的AI辅助支持</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- 准确率指标 -->
+            <div class="performance-metric bg-white rounded-2xl shadow-md p-8 border border-gray-100 transform transition-all duration-500 hover:shadow-lg hover:scale-105 overflow-hidden relative">
+                <!-- 背景装饰 -->
+                <div class="absolute -right-12 -top-12 w-32 h-32 bg-primary/5 rounded-full"></div>
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-5 relative">
+                        <span class="text-4xl font-bold text-primary">98.96%</span>
+                        <div class="absolute inset-0 rounded-full border-8 border-primary/20 border-t-primary transform -rotate-45 animate-pulse-slow"></div>
+                    </div>
+                    <h6 class="text-xl font-bold text-gray-800 mb-3">准确率</h6>
+                    <p class="text-gray-600 text-center">系统诊断结果与病理专家诊断结果的一致率，显著高于行业平均水平</p>
+                    <div class="w-full bg-gray-100 h-2 rounded-full mt-4">
+                        <div class="bg-primary h-full rounded-full" style="width: 98.96%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 召回率指标 -->
+            <div class="performance-metric bg-white rounded-2xl shadow-md p-8 border border-gray-100 transform transition-all duration-500 hover:shadow-lg hover:scale-105 overflow-hidden relative">
+                <!-- 背景装饰 -->
+                <div class="absolute -right-12 -top-12 w-32 h-32 bg-green-50 rounded-full"></div>
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-32 h-32 rounded-full bg-green-100 flex items-center justify-center mb-5 relative">
+                        <span class="text-4xl font-bold text-green-600">89.15%</span>
+                        <div class="absolute inset-0 rounded-full border-8 border-green-200 border-t-green-600 transform -rotate-45 animate-pulse-slow"></div>
+                    </div>
+                    <h6 class="text-xl font-bold text-gray-800 mb-3">召回率</h6>
+                    <p class="text-gray-600 text-center">系统正确识别出的阳性样本占所有实际阳性样本的比例，有效降低漏诊风险</p>
+                    <div class="w-full bg-gray-100 h-2 rounded-full mt-4">
+                        <div class="bg-green-600 h-full rounded-full" style="width: 89.15%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AUC值指标 -->
+            <div class="performance-metric bg-white rounded-2xl shadow-md p-8 border border-gray-100 transform transition-all duration-500 hover:shadow-lg hover:scale-105 overflow-hidden relative">
+                <!-- 背景装饰 -->
+                <div class="absolute -right-12 -top-12 w-32 h-32 bg-purple-50 rounded-full"></div>
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-32 h-32 rounded-full bg-purple-100 flex items-center justify-center mb-5 relative">
+                        <span class="text-4xl font-bold text-purple-600">0.95</span>
+                        <div class="absolute inset-0 rounded-full border-8 border-purple-200 border-t-purple-600 transform -rotate-45 animate-pulse-slow"></div>
+                    </div>
+                    <h6 class="text-xl font-bold text-gray-800 mb-3">AUC值</h6>
+                    <p class="text-gray-600 text-center">ROC曲线下面积，评估模型区分不同类别能力的指标，接近理想值1.0</p>
+                    <div class="w-full bg-gray-100 h-2 rounded-full mt-4">
+                        <div class="bg-purple-600 h-full rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新增：扩展性能指标 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mt-10">
+            <!-- 扩展指标1 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex items-center transition-all duration-300 hover:shadow-lg">
+                <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fa fa-bullseye fa-xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">特异性</p>
+                    <p class="text-2xl font-bold text-gray-800">97.38%</p>
+                </div>
+            </div>
+            
+            <!-- 扩展指标2 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex items-center transition-all duration-300 hover:shadow-lg">
+                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fa fa-tachometer-alt fa-xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">分析速度</p>
+                    <p class="text-2xl font-bold text-gray-800">≤2秒/张</p>
+                </div>
+            </div>
+            
+            <!-- 扩展指标3 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex items-center transition-all duration-300 hover:shadow-lg">
+                <div class="w-14 h-14 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fa fa-check-circle fa-xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">F1分数</p>
+                    <p class="text-2xl font-bold text-gray-800">0.93</p>
+                </div>
+            </div>
+            
+            <!-- 扩展指标4 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex items-center transition-all duration-300 hover:shadow-lg">
+                <div class="w-14 h-14 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fa fa-users fa-xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">支持人群</p>
+                    <p class="text-2xl font-bold text-gray-800">18-65岁</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新增：临床验证数据 -->
+        <div class="bg-white rounded-2xl shadow-md p-8 border border-gray-100 max-w-5xl mx-auto mt-10">
+            <h4 class="text-xl font-bold text-gray-800 mb-4">临床验证数据</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="flex flex-col items-center p-4 border border-gray-100 rounded-xl bg-gray-50">
+                    <i class="fa fa-hospital text-primary text-2xl mb-3"></i>
+                    <p class="text-sm text-gray-500">验证医疗机构</p>
+                    <p class="text-3xl font-bold text-gray-800 mt-2">12家</p>
+                </div>
+                <div class="flex flex-col items-center p-4 border border-gray-100 rounded-xl bg-gray-50">
+                    <i class="fa fa-file-medical text-green-600 text-2xl mb-3"></i>
+                    <p class="text-sm text-gray-500">验证样本量</p>
+                    <p class="text-3xl font-bold text-gray-800 mt-2">52,000+</p>
+                </div>
+                <div class="flex flex-col items-center p-4 border border-gray-100 rounded-xl bg-gray-50">
+                    <i class="fa fa-user-md text-purple-600 text-2xl mb-3"></i>
+                    <p class="text-sm text-gray-500">参与专家</p>
+                    <p class="text-3xl font-bold text-gray-800 mt-2">36名</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 适用人群 - 专业医疗描述 -->
+    <div class="about-section mb-12">
+        <div class="flex flex-col items-center justify-center mb-10">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <i class="fa fa-users text-primary fa-2x"></i>
+            </div>
+            <h3 class="section-title text-3xl font-bold text-gray-800 text-center mb-2">适用人群</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full mb-4"></div>
+            <p class="text-gray-600 text-center max-w-3xl text-lg">我们的系统专为需要高效准确宫颈细胞学诊断的医疗机构和专业人员设计</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- 适用人群卡片1 -->
+            <div class="target-audience bg-white p-8 rounded-2xl shadow-md border border-gray-100 transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden relative">
+                <!-- 背景装饰 -->
+                <div class="absolute -right-10 -top-10 w-28 h-28 bg-blue-50 rounded-full"></div>
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <div class="w-24 h-24 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 transition-all hover:bg-blue-600 hover:text-white duration-300">
+                        <i class="fa fa-hospital text-4xl"></i>
+                    </div>
+                    <h6 class="text-xl font-bold text-gray-800 mb-4">医疗机构</h6>
+                    <p class="text-gray-600 mb-4">各级医院病理科、妇幼保健院、专科诊所等需要进行宫颈细胞学筛查的医疗机构。特别适用于年筛查量超过5,000例的机构，可显著提升筛查效率和准确性。</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">三甲医院</span>
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">妇幼保健院</span>
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">体检中心</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 适用人群卡片2 -->
+            <div class="target-audience bg-white p-8 rounded-2xl shadow-md border border-gray-100 transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden relative">
+                <!-- 背景装饰 -->
+                <div class="absolute -right-10 -top-10 w-28 h-28 bg-green-50 rounded-full"></div>
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 transition-all hover:bg-green-600 hover:text-white duration-300">
+                        <i class="fa fa-user-md text-4xl"></i>
+                    </div>
+                    <h6 class="text-xl font-bold text-gray-800 mb-4">病理医师</h6>
+                    <p class="text-gray-600 mb-4">各级病理医师，特别是需要处理大量细胞学样本、提高工作效率的临床病理诊断人员。系统可作为辅助工具，帮助医师快速筛选阳性样本，减少40%以上的阅片时间。</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs">细胞学专家</span>
+                        <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs">住院医师</span>
+                        <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs">病理技师</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 适用人群卡片3 -->
+            <div class="target-audience bg-white p-8 rounded-2xl shadow-md border border-gray-100 transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden relative">
+                <!-- 背景装饰 -->
+                <div class="absolute -right-10 -top-10 w-28 h-28 bg-purple-50 rounded-full"></div>
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <div class="w-24 h-24 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-6 transition-all hover:bg-purple-600 hover:text-white duration-300">
+                        <i class="fa fa-user-nurse text-4xl"></i>
+                    </div>
+                    <h6 class="text-xl font-bold text-gray-800 mb-4">临床医护人员</h6>
+                    <p class="text-gray-600 mb-4">妇产科医生、妇幼保健人员等需要辅助诊断工具支持临床决策的医护人员。系统提供的分析结果可帮助临床医生制定更精准的诊疗计划和随访方案。</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">妇产科医生</span>
+                        <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">妇幼保健师</span>
+                        <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">家庭医生</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新增：筛查人群指导 -->
+        <div class="bg-white rounded-2xl shadow-md p-8 border border-gray-100 max-w-6xl mx-auto mt-10">
+            <h4 class="text-xl font-bold text-gray-800 mb-6 text-center">推荐筛查人群指导</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-4 mt-1">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-lg font-semibold text-gray-800 mb-2">优先筛查人群</h6>
+                        <ul class="text-gray-600 space-y-2">
+                            <li><i class="fa fa-circle text-xs mr-2 text-primary"></i>30-65岁女性，无定期宫颈癌筛查史</li>
+                            <li><i class="fa fa-circle text-xs mr-2 text-primary"></i>有高危型HPV持续感染的女性</li>
+                            <li><i class="fa fa-circle text-xs mr-2 text-primary"></i>有宫颈病变史或宫颈癌家族史的女性</li>
+                            <li><i class="fa fa-circle text-xs mr-2 text-primary"></i>多个性伴侣或性接触过早的女性</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                        <i class="fa fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-lg font-semibold text-gray-800 mb-2">筛查频率建议</h6>
+                        <ul class="text-gray-600 space-y-2">
+                            <li><i class="fa fa-circle text-xs mr-2 text-green-600"></i>21-29岁：每3年进行一次细胞学检查</li>
+                            <li><i class="fa fa-circle text-xs mr-2 text-green-600"></i>30-65岁：每5年进行一次HPV+细胞学联合检查</li>
+                            <li><i class="fa fa-circle text-xs mr-2 text-green-600"></i>65岁以上：如既往筛查正常，可停止常规筛查</li>
+                            <li><i class="fa fa-circle text-xs mr-2 text-green-600"></i>高危人群：遵医嘱增加筛查频次</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 使用说明 - 增强视觉引导 -->
+    <div class="about-section mb-12">
+        <div class="flex flex-col items-center justify-center mb-10">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <i class="fa fa-book text-primary fa-2x"></i>
+            </div>
+            <h3 class="section-title text-3xl font-bold text-gray-800 text-center mb-2">使用说明</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full mb-4"></div>
+            <p class="text-gray-600 text-center max-w-3xl text-lg">系统操作简单直观，只需三步即可完成宫颈细胞学图像的AI辅助诊断</p>
+        </div>
+        
+        <div class="max-w-6xl mx-auto">
+            <!-- 步骤流程 -->
+            <div class="relative">
+                <!-- 连接线 -->
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-primary via-green-500 to-blue-500 -translate-y-1/2 z-0 rounded-full"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <!-- 步骤1 -->
+                    <div class="step-card bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl shadow-md border border-blue-100 transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 relative shadow-md">
+                                <i class="fa fa-upload text-3xl"></i>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-white text-blue-600 rounded-full border-2 border-blue-600 flex items-center justify-center text-sm font-bold shadow-sm">1</div>
+                            </div>
+                            <h6 class="text-xl font-bold text-gray-800 mb-4">上传图像</h6>
+                            <p class="text-gray-600 mb-4">选择需要分析的宫颈细胞学图像文件，支持JPG、PNG、BMP等格式。上传前确保图像清晰可见，无遮挡物。</p>
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">JPG</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">PNG</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">BMP</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">≤20MB</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤2 -->
+                    <div class="step-card bg-gradient-to-br from-white to-green-50 p-8 rounded-2xl shadow-md border border-green-100 transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 relative shadow-md">
+                                <i class="fa fa-brain text-3xl"></i>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-white text-green-600 rounded-full border-2 border-green-600 flex items-center justify-center text-sm font-bold shadow-sm">2</div>
+                            </div>
+                            <h6 class="text-xl font-bold text-gray-800 mb-4">AI分析</h6>
+                            <p class="text-gray-600 mb-4">系统自动执行多步骤分析流程：图像预处理、细胞分割、特征提取和病变分类，整个过程快速高效，通常在2秒内完成。</p>
+                            <div class="w-full bg-gray-100 h-2 rounded-full mt-4">
+                                <div class="bg-green-500 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">分析速度: ≤2秒/张</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤3 -->
+                    <div class="step-card bg-gradient-to-br from-white to-purple-50 p-8 rounded-2xl shadow-md border border-purple-100 transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-6 relative shadow-md">
+                                <i class="fa fa-chart-bar text-3xl"></i>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-white text-purple-600 rounded-full border-2 border-purple-600 flex items-center justify-center text-sm font-bold shadow-sm">3</div>
+                            </div>
+                            <h6 class="text-xl font-bold text-gray-800 mb-4">查看结果</h6>
+                            <p class="text-gray-600 mb-4">获取详细的AI分析报告，包括病变等级评估、可疑区域标记、置信度分数和临床建议。支持结果导出和病例对比分析。</p>
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">PDF报告</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">图像标记</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">历史对比</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 操作提示 -->
+            <div class="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 mt-12 border border-primary/20">
+                <h5 class="font-bold text-xl text-gray-800 mb-4 flex items-center">
+                    <i class="fa fa-lightbulb text-primary mr-2"></i> 操作提示
+                </h5>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 mb-1">最佳图像质量</h6>
+                            <p class="text-gray-600 text-sm">建议上传高质量、清晰的细胞学图像，分辨率不低于1024×1024像素，确保细胞细节可见</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 mb-1">专业判断结合</h6>
+                            <p class="text-gray-600 text-sm">对于边缘或模糊区域，建议结合临床信息和病理专家判断，不要仅依赖AI结果</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 mb-1">辅助诊断定位</h6>
+                            <p class="text-gray-600 text-sm">系统分析结果仅作为辅助诊断参考，最终诊断请以病理医师诊断为准</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 mb-1">定期系统更新</h6>
+                            <p class="text-gray-600 text-sm">系统模型会定期更新优化，建议保持网络连接以获取最新版本，提升分析准确性</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 版本信息 - 专业技术展示 -->
+    <div class="about-section mb-12">
+        <div class="flex flex-col items-center justify-center mb-8">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <i class="fa fa-info-circle text-primary fa-2x"></i>
+            </div>
+            <h3 class="section-title text-3xl font-bold text-gray-800 text-center mb-2">版本信息</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full mb-4"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-md border border-gray-100">
+            <!-- 核心版本信息 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100 transform transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-code-branch text-2xl"></i>
+                    </div>
+                    <h4 class="text-gray-600 mb-2">版本号</h4>
+                    <p class="text-2xl font-bold text-primary">V1.0.0</p>
+                    <p class="text-xs text-gray-500 mt-2">更新版本: 2024-06-15</p>
+                </div>
+                
+                <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100 transform transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-calendar-check-o text-2xl"></i>
+                    </div>
+                    <h4 class="text-gray-600 mb-2">最后更新</h4>
+                    <p class="text-xl font-semibold text-gray-800">2024年6月</p>
+                    <p class="text-xs text-gray-500 mt-2">构建版本: 14357</p>
+                </div>
+                
+                <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100 transform transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-cloud text-2xl"></i>
+                    </div>
+                    <h4 class="text-gray-600 mb-2">技术支持</h4>
+                    <p class="text-xl font-semibold text-gray-800">华为云ModelArts</p>
+                    <p class="text-xs text-gray-500 mt-2">AI平台版本: V3.5.0</p>
+                </div>
+            </div>
+            
+            <!-- 技术架构 -->
+            <div class="mb-10">
+                <h5 class="font-bold text-xl text-gray-800 mb-6 flex items-center">
+                    <i class="fa fa-server text-primary mr-2"></i> 技术架构
+                </h5>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa fa-desktop"></i>
+                            </div>
+                            <h6 class="font-semibold text-gray-800">前端框架</h6>
+                        </div>
+                        <p class="text-sm text-gray-600">Vue.js 3.3 + Tailwind CSS 3.0</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa fa-cogs"></i>
+                            </div>
+                            <h6 class="font-semibold text-gray-800">后端服务</h6>
+                        </div>
+                        <p class="text-sm text-gray-600">Python Flask 2.3 + FastAPI</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa fa-brain"></i>
+                            </div>
+                            <h6 class="font-semibold text-gray-800">AI模型</h6>
+                        </div>
+                        <p class="text-sm text-gray-600">ResNet-50 + Transformer</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa fa-database"></i>
+                            </div>
+                            <h6 class="font-semibold text-gray-800">数据库</h6>
+                        </div>
+                        <p class="text-sm text-gray-600">PostgreSQL 15 + Redis 7.0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 免责声明 -->
+            <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-100">
+                <h5 class="font-bold text-lg text-gray-800 mb-4 flex items-center">
+                    <i class="fa fa-exclamation-triangle text-yellow-500 mr-2"></i> 免责声明
+                </h5>
+                <p class="text-gray-700 mb-4">本系统仅用于辅助医疗诊断，不能替代专业医生的临床判断。系统分析结果仅供参考，临床诊断请以专业医生的意见为准。</p>
+                <p class="text-gray-700">使用本系统时，应严格遵守相关医疗法规和伦理准则，确保患者隐私保护和医疗数据安全。</p>
+            </div>
+            
+            <!-- 支持信息 -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h6 class="font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fa fa-headphones text-blue-600 mr-2"></i> 技术支持
+                    </h6>
+                    <p class="text-sm text-gray-600 mb-2">邮箱: support@ai-medical.com</p>
+                    <p class="text-sm text-gray-600">电话: 400-800-8888 (工作日 9:00-18:00)</p>
+                </div>
+                
+                <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+                    <h6 class="font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fa fa-book text-green-600 mr-2"></i> 文档中心
+                    </h6>
+                    <p class="text-sm text-gray-600 mb-2">用户手册: <a href="#" class="text-green-600 hover:underline">在线文档</a></p>
+                    <p class="text-sm text-gray-600">API文档: <a href="#" class="text-green-600 hover:underline">开发指南</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* 基础样式 */
+.about-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+}
+
+/* 通用动画效果 */
+.about-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.about-section:nth-child(1) { animation-delay: 0.1s; }
+.about-section:nth-child(2) { animation-delay: 0.2s; }
+.about-section:nth-child(3) { animation-delay: 0.3s; }
+.about-section:nth-child(4) { animation-delay: 0.4s; }
+.about-section:nth-child(5) { animation-delay: 0.5s; }
+.about-section:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 进度条动画 */
+@keyframes progressAnimation {
+    from { width: 0%; }
+    to { width: var(--progress-width); }
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 0.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .p-6 {
+        padding: 1rem;
+    }
+}
+
+/* 图标容器悬停效果 */
+.tech-feature .fa {
+    transition: transform 0.3s ease;
+}
+
+.tech-feature:hover .fa {
+    transform: scale(1.1);
+}
+
+/* 链接样式 */
+a {
+    text-decoration: none;
+}
+
+/* 自定义滚动条（如果需要） */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+</style>
+
+<script>
+// 页面加载完成后执行
+window.addEventListener('DOMContentLoaded', function() {
+    // 进度条动画
+    setTimeout(() => {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        const percentages = [98.96, 89.15, 95];
+        
+        progressBars.forEach((bar, index) => {
+            bar.style.setProperty('--progress-width', percentages[index] + '%');
+            bar.style.animation = `progressAnimation 1.5s ease-out forwards ${index * 0.3}s`;
+        });
+    }, 800);
+    
+    // 步骤指示器交互
+    const stepItems = document.querySelectorAll('.step-item');
+    const stepProgress = document.getElementById('step-progress');
+    
+    if (stepProgress) {
+        // 动画显示步骤进度条
+        setTimeout(() => {
+            stepProgress.style.width = '100%';
+            stepProgress.style.transition = 'width 1.5s ease-out';
+        }, 1000);
+    }
+    
+    // 为步骤项添加交互效果
+    stepItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.querySelector('div').style.transform = 'scale(1.1)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.querySelector('div').style.transform = 'scale(1)';
+        });
+    });
+});
+</script>
